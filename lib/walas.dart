@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cakapp/shared/navwk.dart';
 
-void main() {
-  runApp(Walas());
-}
-
 class Walas extends StatelessWidget {
 
   @override

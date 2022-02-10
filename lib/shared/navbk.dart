@@ -6,6 +6,7 @@ import 'package:cakapp/GuruBK/index.dart';
 import 'package:cakapp/WaliKelas/index.dart';
 import 'package:cakapp/DataSiswa/index.dart';
 import 'package:cakapp/main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,6 +52,22 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
+    final User? user = FirebaseAuth.instance.currentUser;
+    return StreamBuilder<DocumentSnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('users')
+            .doc(user!.uid)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else if (snapshot.hasData) {
+            return Tampilan(snapshot.data!);
+          }
+          return CircularProgressIndicator();
+        });
+  }
+  Tampilan(DocumentSnapshot snapshot){
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -60,8 +77,8 @@ class _NavBarState extends State<NavBar> {
                 backgroundImage: AssetImage('assets/images/eevee.png'),
                 radius: 40,
               ),
-              accountName: Text("Rahman"),
-              accountEmail: Text("3103119190@student.smktelkom-pwt.sch.id")),
+              accountName: Text(snapshot.get('nama')),
+              accountEmail: Text(snapshot.get('email'))),
           ListTile(
             leading: Icon(Icons.home),
             title: Text('Home'),
