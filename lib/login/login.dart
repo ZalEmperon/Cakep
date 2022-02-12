@@ -16,57 +16,78 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("LOGIN / SIGN UP"),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 50,),
-              child: TextFormField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  hintText: "EMAIL...",
-                ),
-              ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 1.0),
+            child: Center(
+              child: Container(
+                  width: 400,
+                  height: 150,
+                  /*decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(50.0)),*/
+                  child: Image.asset('assets/images/telkomsch.png')),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 50,),
-              child: TextFormField(
-                controller: passwordController,
-                decoration: InputDecoration(
-                  hintText: "PASSWORD...",
-                ),
-                obscureText: true,
-              ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: TextFormField(
+              controller: emailController,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Email',
+                  hintText: 'Enter valid email id as abc@gmail.com'),
             ),
-            Container(
-              height: 40,
-              width: MediaQuery.of(context).size.width / 3,
-              color: Colors.blue,
-              child: FlatButton(
-                onPressed: () {
-                  final String email = emailController.text.trim();
-                  final String password = passwordController.text.trim();
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            child: TextFormField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Password',
+                  hintText: 'Password'),
+              obscureText: true,
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          Container(
+            height: 40,
+            width: MediaQuery.of(context).size.width / 3,
+            decoration: BoxDecoration(
+                color: Colors.red, borderRadius: BorderRadius.circular(20)),
+            child: FlatButton(
+              onPressed: () {
+                final String email = emailController.text.trim();
+                final String password = passwordController.text.trim();
 
-                  if(email.isEmpty){
-                    print("Email is Empty");
+                if (email.isEmpty) {
+                  print("Email is Empty");
+                } else {
+                  if (password.isEmpty) {
+                    print("Password is Empty");
                   } else {
-                    if(password.isEmpty){
-                      print("Password is Empty");
-                    } else {
-                      context.read<AuthService>().login(
-                        email,
-                        password,
-                      );
-                    }
+                    context.read<AuthService>().login(
+                          email,
+                          password,
+                        );
                   }
-                },
-                child: Text("LOG IN"),
+                }
+              },
+              child: Text(
+                "LOG IN",
+                style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

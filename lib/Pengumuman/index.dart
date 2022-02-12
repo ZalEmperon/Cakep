@@ -8,7 +8,6 @@ class pengumuman extends StatelessWidget {
       appBar: AppBar(
         title: Text("Pengumuman"),
       ),
-      drawer: NavBar(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

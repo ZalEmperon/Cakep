@@ -1,6 +1,5 @@
 import 'package:cakapp/PoinSiswa/create.dart';
 import 'package:flutter/material.dart';
-import 'package:cakapp/shared/navbk.dart';
 
 class poin_siswa extends StatelessWidget {
   @override
@@ -9,7 +8,6 @@ class poin_siswa extends StatelessWidget {
       appBar: AppBar(
         title: Text("Poin Siswa"),
       ),
-      drawer: NavBar(),
       body: Column (
         children: <Widget> [
           Container(

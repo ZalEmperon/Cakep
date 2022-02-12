@@ -2,9 +2,9 @@ import 'package:cakapp/Pengumuman/index.dart';
 import 'package:cakapp/TataTertib/index.dart';
 import 'package:cakapp/PoinSiswa/index.dart';
 import 'package:cakapp/NilaiKarakter/index.dart';
-import 'package:cakapp/GuruBK/index.dart';
-import 'package:cakapp/WaliKelas/index.dart';
-import 'package:cakapp/DataSiswa/index.dart';
+import 'package:cakapp/GuruBK/homepage.dart';
+import 'package:cakapp/WaliKelas/indexwalas.dart';
+import 'package:cakapp/DataSiswa/indexsiswa.dart';
 import 'package:cakapp/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -39,10 +39,9 @@ class _NavBarState extends State<NavBar> {
                     onPressed: () {
                       FirebaseAuth auth = FirebaseAuth.instance;
                       auth.signOut().then((res) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => MyApp()),
-                        );
+                        Navigator.pop(context);
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                            MyApp()), (Route<dynamic> route) => false);
                       });
                     }),
               ],
@@ -58,7 +57,7 @@ class _NavBarState extends State<NavBar> {
             .collection('users')
             .doc(user!.uid)
             .snapshots(),
-        builder: (context, snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (snapshot.hasData) {
@@ -77,7 +76,7 @@ class _NavBarState extends State<NavBar> {
                 backgroundImage: AssetImage('assets/images/eevee.png'),
                 radius: 40,
               ),
-              accountName: Text(snapshot.get('nama')),
+              accountName: Text(snapshot.get('username')),
               accountEmail: Text(snapshot.get('email'))),
           ListTile(
             leading: Icon(Icons.home),
@@ -100,7 +99,7 @@ class _NavBarState extends State<NavBar> {
             title: Text('Tata Tertib'),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => tata_tertib()));
+                  MaterialPageRoute(builder: (context) => index_tata_tertib()));
             },
           ),
           ListTile(
@@ -124,7 +123,7 @@ class _NavBarState extends State<NavBar> {
             title: Text('Guru BK'),
             onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => guru_bk()));
+                  context, MaterialPageRoute(builder: (context) => HomePageBk()));
             },
           ),
           ListTile(
@@ -132,7 +131,7 @@ class _NavBarState extends State<NavBar> {
             title: Text('Walikelas'),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => walikelas()));
+                  MaterialPageRoute(builder: (context) => wali_kelas()));
             },
           ),
           ListTile(
