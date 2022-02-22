@@ -11,11 +11,14 @@ class ListDataSiswa extends StatefulWidget {
 }
 
 class _ListDataSiswaState extends State<ListDataSiswa> {
-  final Stream<QuerySnapshot> datasiswaStream =
-  FirebaseFirestore.instance.collection('users').where('role',isEqualTo: 'siswa').snapshots();
+  final Stream<QuerySnapshot> datasiswaStream = FirebaseFirestore.instance
+      .collection('users')
+      .where('role', isEqualTo: 'siswa')
+      .snapshots();
 
   CollectionReference datasiswa =
-  FirebaseFirestore.instance.collection('users');
+      FirebaseFirestore.instance.collection('users');
+
   Future<void> deleteUser(id) {
     // print("User Deleted $id");
     return datasiswa
@@ -60,7 +63,6 @@ class _ListDataSiswaState extends State<ListDataSiswa> {
                     children: [
                       TableCell(
                         child: Container(
-
                           child: Center(
                             child: Text(
                               'NIS',
@@ -74,7 +76,6 @@ class _ListDataSiswaState extends State<ListDataSiswa> {
                       ),
                       TableCell(
                         child: Container(
-
                           child: Center(
                             child: Text(
                               'Nama Siswa',
@@ -88,7 +89,6 @@ class _ListDataSiswaState extends State<ListDataSiswa> {
                       ),
                       TableCell(
                         child: Container(
-
                           child: Center(
                             child: Text(
                               'Kelas',
@@ -102,7 +102,6 @@ class _ListDataSiswaState extends State<ListDataSiswa> {
                       ),
                       TableCell(
                         child: Container(
-
                           child: Center(
                             child: Text(
                               'Username',
@@ -116,7 +115,6 @@ class _ListDataSiswaState extends State<ListDataSiswa> {
                       ),
                       TableCell(
                         child: Container(
-
                           child: Center(
                             child: Text(
                               'Action',
@@ -162,7 +160,8 @@ class _ListDataSiswaState extends State<ListDataSiswa> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => UpdateDataSiswa(id: storedocs[i]['id']),
+                                      builder: (context) => UpdateDataSiswa(
+                                          id: storedocs[i]['id']),
                                     ),
                                   )
                                 },
@@ -173,7 +172,7 @@ class _ListDataSiswaState extends State<ListDataSiswa> {
                               ),
                               IconButton(
                                 onPressed: () =>
-                                {deleteUser(storedocs[i]['id'])},
+                                    {deleteUser(storedocs[i]['id'])},
                                 icon: Icon(
                                   Icons.delete,
                                   color: Colors.red,

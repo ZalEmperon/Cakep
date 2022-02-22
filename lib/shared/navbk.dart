@@ -111,14 +111,6 @@ class _NavBarState extends State<NavBar> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.score),
-            title: Text('Nilai Karakter'),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => nilai_karakter()));
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.verified_user),
             title: Text('Guru BK'),
             onTap: () {

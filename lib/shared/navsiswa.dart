@@ -8,7 +8,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cakapp/main.dart';
-
+import 'package:cakapp/PoinSiswaUser/index.dart';
+import 'package:cakapp/TataTertibUser/index.dart';
 class NavBar extends StatefulWidget {
   @override
   _NavBarState createState() => _NavBarState();
@@ -91,17 +92,17 @@ class _NavBarState extends State<NavBar> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.rule_sharp),
-            title: Text('Indikator'),
+            leading: Icon(Icons.score),
+            title: Text('Tata Tertib'),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => index_tata_tertib() ));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TataTertibUser() ));
             },
           ),
           ListTile(
-            leading: Icon(Icons.control_point),
+            leading: Icon(Icons.whatshot_outlined),
             title: Text('Poin Siswa'),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => poin_siswa() ));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => PoinSiswaUser() ));
             },
           ),
           ListTile(

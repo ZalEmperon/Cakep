@@ -5,10 +5,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cakapp/login/auth_service.dart';
 import 'package:cakapp/login/login.dart';
 import 'package:cakapp/login/proses.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:cakapp/notification.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
   runApp(MyApp());
 }
